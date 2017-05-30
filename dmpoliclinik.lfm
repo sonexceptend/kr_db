@@ -1,0 +1,53 @@
+object dmPoliclinic: TdmPoliclinic
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  OldCreateOrder = False
+  Height = 150
+  HorizontalOffset = 370
+  VerticalOffset = 128
+  Width = 378
+  object ODBCConnection1: TODBCConnection
+    Connected = False
+    LoginPrompt = False
+    KeepConnection = False
+    Params.Strings = (
+      'DRIVER=SQL Server'
+      'UID=son'
+      'DATABASE=Policlinic'
+      'WSID=SON-NB'
+      'Trusted_Connection=Yes'
+      'SERVER=SON-NB\MSSQLSERVERSTUD'
+      'Description=1'
+    )
+    Transaction = SQLTransaction1
+    Options = []
+    left = 40
+    top = 16
+  end
+  object SQLTransaction1: TSQLTransaction
+    Active = False
+    Action = caCommit
+    Database = ODBCConnection1
+    Options = []
+    left = 144
+    top = 8
+  end
+  object SQLQueryApplyData: TSQLQuery
+    FieldDefs = <>
+    Database = ODBCConnection1
+    Transaction = SQLTransaction1
+    Options = []
+    Params = <>
+    left = 144
+    top = 67
+  end
+  object SQLExecuteQuery: TSQLQuery
+    FieldDefs = <>
+    Database = ODBCConnection1
+    Transaction = SQLTransaction1
+    Options = []
+    Params = <>
+    left = 256
+    top = 67
+  end
+end

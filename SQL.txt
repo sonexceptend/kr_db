@@ -1,0 +1,3 @@
+INSERT INTO tbPatients VALUES ('%s','%s','%s','%s','%s','%s',%d)
+UPDATE tbPatients SET FirstName='%s', SecondName='%s', MiddleName='%s', BirthName='%s', Pasport='%s', Polis='%s', Sex=%d WHERE id=%d
+DELETE FROM tbPatients WHERE id=%d
