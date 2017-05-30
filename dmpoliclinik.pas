@@ -62,9 +62,11 @@ begin
 end;
 
 procedure TdmPoliclinic.ExectSQL(SQL_Select: string);
+var stmp : string;
 begin
   if not ODBCConnection1.Connected then exit;
   SQLExecuteQuery.Active:=false;
+  //stmp:=StringReplace(SQL_Select,#39,#39,[rfReplaceAll]);
   SQLExecuteQuery.SQL.Text:=Utf8ToWinCP(SQL_Select);
   try
     SQLExecuteQuery.ExecSQL;

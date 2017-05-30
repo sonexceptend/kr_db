@@ -1,3 +1,6 @@
 INSERT INTO tbPatients VALUES ('%s','%s','%s','%s','%s','%s',%d)
 UPDATE tbPatients SET FirstName='%s', SecondName='%s', MiddleName='%s', BirthName='%s', Pasport='%s', Polis='%s', Sex=%d WHERE id=%d
 DELETE FROM tbPatients WHERE id=%d
+SELECT tVis.FirstName, tVis.Date_Visit, tDoc.Specialty FROM (SELECT tP.[FirstName], tV.[Date_Visit], tV.[id_Doctor] FROM [tbVisit] as tV INNER JOIN [tbPatients] as tP ON tV.id_Patient = tP.id WHERE tV.id_Patient = %d) as tVis INNER JOIN [tbDoctors] as tDoc ON tVis.id_Doctor = tDoc.id
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+INSERT INTO tbVisit([id_Patient], [Date_Visit], [id_Doctor]) VALUES (%d, '%s' ,%d)

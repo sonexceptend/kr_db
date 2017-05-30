@@ -7,7 +7,8 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, krdb_code, dmPoliclinik, krdb_fmPacient, krdb_editpacient
+  Forms, krdb_code, dmPoliclinik, krdb_fmPacient, krdb_editpacient, 
+krdb_newvisit
   { you can add units after this };
 
 {$R *.res}
@@ -19,6 +20,7 @@ begin
   Application.CreateForm(TdmPoliclinic, dmPoliclinic);
   Application.CreateForm(TfmOperator, fmOperator);
   Application.CreateForm(TfmEditPatient, fmEditPatient);
+  Application.CreateForm(TfmNewVisit, fmNewVisit);
   Application.Run;
 end.
 

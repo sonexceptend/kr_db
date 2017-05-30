@@ -6,10 +6,11 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  ActnList, Grids, StdCtrls, Buttons
+  ActnList, Grids, StdCtrls, Buttons, ExtCtrls
   , LazUTF8
   , dmPoliclinik
   , krdb_editpacient
+  , krdb_newvisit
   ;
 
 type
@@ -21,6 +22,7 @@ type
     acNewPatient: TAction;
     acEditPatient: TAction;
     acDeletePatient: TAction;
+    acNewVisit: TAction;
     acUpdate: TAction;
     ActionList1: TActionList;
     BitBtn1: TBitBtn;
@@ -32,7 +34,9 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Splitter1: TSplitter;
     StringGrid1: TStringGrid;
+    StringGrid2: TStringGrid;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
     ToolButton2: TToolButton;
@@ -40,18 +44,22 @@ type
     ToolButton4: TToolButton;
     ToolButton5: TToolButton;
     ToolButton6: TToolButton;
+    ToolButton7: TToolButton;
     procedure acClearFilterExecute(Sender: TObject);
     procedure acDeletePatientExecute(Sender: TObject);
     procedure acEditPatientExecute(Sender: TObject);
     procedure acNewPatientExecute(Sender: TObject);
+    procedure acNewVisitExecute(Sender: TObject);
     procedure acUpdateExecute(Sender: TObject);
     procedure edFirstNameKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure FormShow(Sender: TObject);
+    procedure StringGrid1BeforeSelection(Sender: TObject; aCol, aRow: Integer);
   private
     { private declarations }
   public
     procedure UpdateTable(SQL_Select : string);
+    procedure UpdateTableVisit(SQL_Select : string);
     { public declarations }
   end;
 
@@ -164,7 +172,7 @@ begin
     SQLText:=Format(dmPoliclinic.SQLList[0],[edFirstName.Text,
                                              edSecondName.Text,
                                              edMiddleName.Text,
-                                             FormatDateTime('yyyy-mm-dd',edBrithDate.Date),
+                                             FormatDateTime('yyyy-dd-mm',edBrithDate.Date),
                                              StringReplace(edPasport.Text,'_','',[rfReplaceAll]),
                                              StringReplace(edPolis.Text,'_','',[rfReplaceAll]),
                                              0]);
@@ -173,10 +181,33 @@ begin
   acUpdate.Execute;
 end;
 
+procedure TfmOperator.acNewVisitExecute(Sender: TObject);
+begin
+  fmNewVisit.Edit1.Text:=StringGrid1.Cells[1,StringGrid1.Row];
+  fmNewVisit.idPatient:=strtoint(StringGrid1.Cells[7,StringGrid1.Row]);
+  fmNewVisit.DateEdit1.Date:=Now;
+  fmNewVisit.ShowModal;
+  if fmNewVisit.ModalResult<>mrOK then exit;
+end;
+
 procedure TfmOperator.FormShow(Sender: TObject);
 begin
   acUpdate.Execute;
   edFirstName.SetFocus;
+end;
+
+procedure TfmOperator.StringGrid1BeforeSelection(Sender: TObject; aCol,
+  aRow: Integer);
+var idSelect : integer;
+  SQLText : string;
+begin
+  try
+  idSelect:=strtoint(StringGrid1.Cells[7,aRow]);
+  except
+    exit;
+  end;
+  SQLText:=Format(dmPoliclinic.SQLList[3],[idSelect]);
+  UpdateTableVisit(SQLText);
 end;
 
 procedure TfmOperator.UpdateTable(SQL_Select: string);
@@ -207,6 +238,30 @@ begin
     StringGrid1.EndUpdate(true);
   end;
 
+end;
+
+procedure TfmOperator.UpdateTableVisit(SQL_Select: string);
+var row:integer;
+begin
+  StringGrid2.RowCount:=2;
+  StringGrid2.Rows[1].Clear;
+  dmPoliclinic.ApplySQL(SQL_Select);
+  if dmPoliclinic.SQLQueryApplyData.EOF then exit;
+  row:=1;
+  with dmPoliclinic.SQLQueryApplyData do begin
+    First;
+    StringGrid2.BeginUpdate;
+    while not EOF do begin
+      StringGrid2.RowCount:=row+1;
+      StringGrid2.Cells[0,row]:=inttostr(row);
+      StringGrid2.Cells[1,row]:=WinCPToUtf8(Fields[0].AsString);
+      StringGrid2.Cells[2,row]:=WinCPToUtf8(Fields[1].AsString);
+      StringGrid2.Cells[3,row]:=WinCPToUtf8(Fields[2].AsString);
+      Next;
+      inc(row);
+    end;
+    StringGrid2.EndUpdate(true);
+  end;
 end;
 
 end.
