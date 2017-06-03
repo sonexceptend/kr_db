@@ -75,6 +75,7 @@
         <Filename Value="krdb_newvisit.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmNewVisit"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit5>
     </Units>

@@ -182,12 +182,21 @@ begin
 end;
 
 procedure TfmOperator.acNewVisitExecute(Sender: TObject);
+var idSelect : integer;
+  SQLText : string;
 begin
   fmNewVisit.Edit1.Text:=StringGrid1.Cells[1,StringGrid1.Row];
   fmNewVisit.idPatient:=strtoint(StringGrid1.Cells[7,StringGrid1.Row]);
   fmNewVisit.DateEdit1.Date:=Now;
   fmNewVisit.ShowModal;
   if fmNewVisit.ModalResult<>mrOK then exit;
+  try
+  idSelect:=strtoint(StringGrid1.Cells[7,StringGrid1.Row]);
+  except
+    exit;
+  end;
+  SQLText:=Format(dmPoliclinic.SQLList[3],[idSelect]);
+  UpdateTableVisit(SQLText);
 end;
 
 procedure TfmOperator.FormShow(Sender: TObject);

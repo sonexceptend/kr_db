@@ -1,7 +1,7 @@
 object fmGeneral: TfmGeneral
-  Left = 18
+  Left = 1
   Height = 104
-  Top = 63
+  Top = 131
   Width = 424
   BorderStyle = bsToolWindow
   ClientHeight = 104
