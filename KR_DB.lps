@@ -4,7 +4,7 @@
     <PathDelim Value="\"/>
     <Version Value="10"/>
     <BuildModes Active="Default"/>
-    <Units Count="13">
+    <Units Count="14">
       <Unit0>
         <Filename Value="KR_DB.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -33,7 +33,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="DataModule"/>
         <UnitName Value="dmPoliclinik"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="40"/>
         <CursorPos X="27" Y="60"/>
         <UsageCount Value="47"/>
@@ -60,7 +60,7 @@
         <ComponentName Value="fmEditPatient"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="26"/>
         <CursorPos X="21" Y="49"/>
         <UsageCount Value="46"/>
@@ -73,7 +73,7 @@
         <ComponentName Value="fmNewVisit"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="6"/>
         <TopLine Value="46"/>
         <CursorPos X="34" Y="57"/>
         <UsageCount Value="40"/>
@@ -87,10 +87,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="krdb_fmDoctor"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
         <TopLine Value="124"/>
-        <CursorPos X="184" Y="131"/>
+        <CursorPos X="71" Y="135"/>
         <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -101,7 +100,7 @@
         <ComponentName Value="fmDiagnosis"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="64"/>
         <CursorPos X="16" Y="49"/>
         <UsageCount Value="37"/>
@@ -139,12 +138,22 @@
       </Unit11>
       <Unit12>
         <Filename Value="C:\lazarus\components\treelistview\TreeListView.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="1455"/>
         <CursorPos X="14" Y="1459"/>
         <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="krdb_fmaccountant.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit13>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
