@@ -7,9 +7,9 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, treelistviewpackage, krdb_code, dmPoliclinik, krdb_fmPacient,
-  krdb_editpacient, krdb_newvisit, krdb_fmDoctor, krdb_fmdiagnosis, 
-krdb_fmaccountant
+  Forms, treelistviewpackage, lazcontrols, krdb_code, dmPoliclinik,
+  krdb_fmPacient, krdb_editpacient, krdb_newvisit, krdb_fmDoctor,
+  krdb_fmdiagnosis, krdb_fmaccountant
   { you can add units after this };
 
 {$R *.res}

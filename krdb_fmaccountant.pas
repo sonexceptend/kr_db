@@ -5,10 +5,17 @@ unit krdb_fmaccountant;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs;
+  Classes, SysUtils, FileUtil, ExtendedNotebook, Forms, Controls, Graphics,
+  Dialogs, Grids, ComCtrls;
 
 type
+
+  { TForm1 }
+
   TForm1 = class(TForm)
+    ExtendedNotebook1: TExtendedNotebook;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
   private
     { private declarations }
   public

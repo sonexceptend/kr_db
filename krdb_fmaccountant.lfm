@@ -4,5 +4,23 @@ object Form1: TForm1
   Top = 151
   Width = 588
   Caption = 'Form1'
+  ClientHeight = 429
+  ClientWidth = 588
   LCLVersion = '1.6.4.0'
+  object ExtendedNotebook1: TExtendedNotebook
+    Left = 0
+    Height = 429
+    Top = 0
+    Width = 588
+    ActivePage = TabSheet2
+    Align = alClient
+    TabIndex = 1
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'TabSheet1'
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'TabSheet2'
+    end
+  end
 end
