@@ -190,6 +190,7 @@ object fmGeneral: TfmGeneral
       0000000000000000000000000000000000000000000000000000
     }
     Layout = blGlyphTop
+    OnClick = BitBtn2Click
     TabOrder = 2
   end
   object BitBtn3: TBitBtn

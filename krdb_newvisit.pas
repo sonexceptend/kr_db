@@ -55,7 +55,6 @@ begin
       ComboBox1.Items.Add(WinCPToUtf8(Fields[0].AsString)+#9+' ['+WinCPToUtf8(Fields[1].AsString)+']');
       Next;
     end;
-    ComboBox1.DroppedDown:=true;
   end;
   ComboBox1.SetFocus;
 end;

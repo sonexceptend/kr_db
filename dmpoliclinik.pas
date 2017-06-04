@@ -49,7 +49,15 @@ begin
 end;
 
 procedure TdmPoliclinic.ApplySQL(SQL_Select: string);
+var SQLlistLog : TStringList;
 begin
+  SQLlistLog := TStringList.Create;
+  if FileExists('sqllog.txt') then
+    SQLlistLog.LoadFromFile('sqllog.txt');
+  SQLlistLog.Add(SQL_Select);
+  SQLlistLog.SaveToFile('sqllog.txt');
+  SQLlistLog.Free;
+  SQLlistLog:=nil;
   SQLQueryApplyData.Active:=false;
   if not ODBCConnection1.Connected then exit;
   SQLQueryApplyData.SQL.Text:=Utf8ToWinCP(SQL_Select);

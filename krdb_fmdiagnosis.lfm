@@ -1,0 +1,103 @@
+object fmDiagnosis: TfmDiagnosis
+  Left = 369
+  Height = 397
+  Top = 151
+  Width = 578
+  BorderStyle = bsDialog
+  Caption = 'Диагнозы'
+  ClientHeight = 397
+  ClientWidth = 578
+  OnShow = FormShow
+  LCLVersion = '1.6.4.0'
+  object ToolBar1: TToolBar
+    Left = 0
+    Height = 28
+    Top = 0
+    Width = 578
+    ButtonHeight = 24
+    ButtonWidth = 24
+    Caption = 'ToolBar1'
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 1
+      Height = 15
+      Top = 2
+      Width = 29
+      Caption = 'Код:  '
+      ParentColor = False
+    end
+    object Edit1: TEdit
+      Left = 30
+      Height = 23
+      Top = 2
+      Width = 112
+      TabOrder = 0
+      Text = 'Edit1'
+    end
+    object Label2: TLabel
+      Left = 142
+      Height = 15
+      Top = 2
+      Width = 64
+      Caption = 'Описание:  '
+      ParentColor = False
+    end
+    object Edit2: TEdit
+      Left = 206
+      Height = 23
+      Top = 2
+      Width = 370
+      TabOrder = 1
+      Text = 'Edit2'
+    end
+  end
+  object TreeListView1: TTreeListView
+    Left = 0
+    Height = 369
+    Top = 28
+    Width = 578
+    Options = [tlvoToolTips, tlvoRightMouseSelects, tlvoStriped]
+    Columns = <    
+      item
+        Alignment = taLeftJustify
+        MaxWidth = 100
+        MinWidth = 40
+        Text = 'Код'
+        Width = 100
+        Visible = True
+      end    
+      item
+        Alignment = taLeftJustify
+        MinWidth = 200
+        Text = 'Описание'
+        Width = 200
+        Visible = True
+      end>
+    RowHeight = 16
+    HorizontalLineMode = lmNone
+    HorizontalLineColor = clWindowFrame
+    VerticalLineMode = lmDot
+    VerticalLineColor = clWindowFrame
+    RootLineMode = lmDot
+    RootLineColor = clWindowFrame
+    ColorSearchMark = clAqua
+    ColorSearchMarkField = 16744320
+    ExpandMode = emExpandByClick
+    HotTrackFont.Color = clBlue
+    HotTrackFont.Style = [fsUnderline]
+    Font.Color = clWindowText
+    SelectedFont.Color = clHighlightText
+    SelectedHotTrackFont.Color = clHighlightText
+    SelectedHotTrackFont.Style = [fsBold, fsUnderline]
+    StripedOddColor = clWindow
+    StripedEvenColor = 14745599
+    SelectBackColor = clHighlight
+    ButtonColor = clWindow
+    BackGroundColor = clWindow
+    Scrollbars = ssBoth
+    HeaderVisible = True
+    OnItemExpanded = TreeListView1ItemExpanded
+    TabOrder = 1
+    Align = alClient
+  end
+end

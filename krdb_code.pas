@@ -9,6 +9,7 @@ uses
   Buttons
   , dmPoliclinik
   , krdb_fmPacient
+  , krdb_fmDoctor
   ;
 
 type
@@ -22,6 +23,7 @@ type
     BitBtn4: TBitBtn;
     StatusBar1: TStatusBar;
     procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -84,6 +86,11 @@ end;
 procedure TfmGeneral.BitBtn1Click(Sender: TObject);
 begin
   fmOperator.ShowModal;
+end;
+
+procedure TfmGeneral.BitBtn2Click(Sender: TObject);
+begin
+  fmDoctorCabinet.ShowModal;
 end;
 
 procedure TfmGeneral.BitBtn4Click(Sender: TObject);
