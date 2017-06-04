@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, TreeListView, Forms, Controls, Graphics, Dialogs,
-  ComCtrls, StdCtrls
+  ComCtrls, StdCtrls, ExtCtrls, Buttons
   , dmPoliclinik
   , LazUTF8
   ;
@@ -16,12 +16,13 @@ type
   { TfmDiagnosis }
 
   TfmDiagnosis = class(TForm)
-    Edit1: TEdit;
-    Edit2: TEdit;
-    Label1: TLabel;
-    Label2: TLabel;
-    ToolBar1: TToolBar;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    Panel1: TPanel;
     TreeListView1: TTreeListView;
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure Edit1KeyPress(Sender: TObject; var Key: char);
     procedure FormShow(Sender: TObject);
     procedure TreeListView1ItemExpanded(sender: TObject; item: TTreeListItem);
   private
@@ -46,6 +47,23 @@ begin
   TreeListView1.Items.Clear;
   UpdateTableDiagnosis(0,2,nil,'');
   fShow:=false;
+end;
+
+procedure TfmDiagnosis.BitBtn1Click(Sender: TObject);
+begin
+  ModalResult:=mrOK;
+  Hide;
+end;
+
+procedure TfmDiagnosis.BitBtn2Click(Sender: TObject);
+begin
+  ModalResult:=mrCancel;
+  Hide;
+end;
+
+procedure TfmDiagnosis.Edit1KeyPress(Sender: TObject; var Key: char);
+begin
+
 end;
 
 procedure TfmDiagnosis.TreeListView1ItemExpanded(sender: TObject;

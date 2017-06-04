@@ -6,3 +6,6 @@ SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INN
 INSERT INTO tbVisit([id_Patient], [Date_Visit], [id_Doctor]) VALUES (%d, '%s' ,%d)
 SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode IS NULL
 SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = '%s'
+SELECT [tbVisit].[id],[tbPatients].[FirstName],[tbPatients].[SecondName],[tbPatients].[MiddleName],[tbVisit].[Date_Visit],[tbVisit].[id_Diagnoz] FROM [tbVisit] INNER JOIN [tbPatients] ON [tbVisit].id_Patient = [tbPatients].id
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id
+UPDATE [dbo].[tbVisit] SET [id_Diagnoz] = (SELECT id FROM [tbDiagnosis] WHERE [tbDiagnosis].Code='%s') WHERE [tbVisit].id=%d

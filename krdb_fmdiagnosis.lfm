@@ -1,7 +1,7 @@
 object fmDiagnosis: TfmDiagnosis
-  Left = 369
+  Left = 371
   Height = 397
-  Top = 151
+  Top = 170
   Width = 578
   BorderStyle = bsDialog
   Caption = 'Диагнозы'
@@ -9,52 +9,10 @@ object fmDiagnosis: TfmDiagnosis
   ClientWidth = 578
   OnShow = FormShow
   LCLVersion = '1.6.4.0'
-  object ToolBar1: TToolBar
-    Left = 0
-    Height = 28
-    Top = 0
-    Width = 578
-    ButtonHeight = 24
-    ButtonWidth = 24
-    Caption = 'ToolBar1'
-    TabOrder = 0
-    object Label1: TLabel
-      Left = 1
-      Height = 15
-      Top = 2
-      Width = 29
-      Caption = 'Код:  '
-      ParentColor = False
-    end
-    object Edit1: TEdit
-      Left = 30
-      Height = 23
-      Top = 2
-      Width = 112
-      TabOrder = 0
-      Text = 'Edit1'
-    end
-    object Label2: TLabel
-      Left = 142
-      Height = 15
-      Top = 2
-      Width = 64
-      Caption = 'Описание:  '
-      ParentColor = False
-    end
-    object Edit2: TEdit
-      Left = 206
-      Height = 23
-      Top = 2
-      Width = 370
-      TabOrder = 1
-      Text = 'Edit2'
-    end
-  end
   object TreeListView1: TTreeListView
     Left = 0
-    Height = 369
-    Top = 28
+    Height = 352
+    Top = 0
     Width = 578
     Options = [tlvoToolTips, tlvoRightMouseSelects, tlvoStriped]
     Columns = <    
@@ -97,7 +55,56 @@ object fmDiagnosis: TfmDiagnosis
     Scrollbars = ssBoth
     HeaderVisible = True
     OnItemExpanded = TreeListView1ItemExpanded
-    TabOrder = 1
+    TabOrder = 0
     Align = alClient
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 45
+    Top = 352
+    Width = 578
+    Align = alBottom
+    BevelInner = bvRaised
+    BevelOuter = bvLowered
+    ClientHeight = 45
+    ClientWidth = 578
+    TabOrder = 1
+    object BitBtn1: TBitBtn
+      AnchorSideRight.Control = BitBtn2
+      AnchorSideBottom.Control = Panel1
+      AnchorSideBottom.Side = asrBottom
+      Left = 418
+      Height = 30
+      Top = 9
+      Width = 75
+      Anchors = [akRight, akBottom]
+      BorderSpacing.Right = 4
+      BorderSpacing.Bottom = 4
+      Default = True
+      DefaultCaption = True
+      Kind = bkOK
+      ModalResult = 1
+      OnClick = BitBtn1Click
+      TabOrder = 0
+    end
+    object BitBtn2: TBitBtn
+      AnchorSideRight.Control = Panel1
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = Panel1
+      AnchorSideBottom.Side = asrBottom
+      Left = 497
+      Height = 30
+      Top = 9
+      Width = 75
+      Anchors = [akRight, akBottom]
+      BorderSpacing.Right = 4
+      BorderSpacing.Bottom = 4
+      Cancel = True
+      DefaultCaption = True
+      Kind = bkCancel
+      ModalResult = 2
+      OnClick = BitBtn2Click
+      TabOrder = 1
+    end
   end
 end

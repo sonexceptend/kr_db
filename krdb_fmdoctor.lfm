@@ -1,11 +1,13 @@
 object fmDoctorCabinet: TfmDoctorCabinet
-  Left = 398
+  Left = 358
   Height = 455
-  Top = 201
+  Top = 131
   Width = 761
   Caption = 'fmDoctorCabinet'
   ClientHeight = 455
   ClientWidth = 761
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
   OnShow = FormShow
   LCLVersion = '1.6.4.0'
   object ToolBar1: TToolBar
@@ -44,20 +46,174 @@ object fmDoctorCabinet: TfmDoctorCabinet
   end
   object StringGrid1: TStringGrid
     Left = 0
-    Height = 421
-    Top = 34
+    Height = 372
+    Top = 83
     Width = 761
     Align = alClient
+    AutoFillColumns = True
+    ColCount = 7
+    Columns = <    
+      item
+        Title.Caption = 'id'
+        Visible = False
+      end    
+      item
+        SizePriority = 0
+        Title.Caption = 'Фамилия'
+        Width = 120
+      end    
+      item
+        SizePriority = 0
+        Title.Caption = 'Имя'
+        Width = 120
+      end    
+      item
+        SizePriority = 0
+        Title.Caption = 'Отчество'
+        Width = 120
+      end    
+      item
+        SizePriority = 0
+        Title.Caption = 'Дата визита'
+        Width = 100
+      end    
+      item
+        SizePriority = 0
+        Title.Caption = 'Код диагноза'
+        Width = 100
+      end    
+      item
+        Title.Caption = 'Диагноз'
+        Width = 197
+      end>
+    FixedCols = 0
     TabOrder = 1
+    OnDblClick = StringGrid1DblClick
+    ColWidths = (
+      0
+      120
+      120
+      120
+      100
+      100
+      197
+    )
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Height = 49
+    Top = 34
+    Width = 761
+    Align = alTop
+    Caption = 'Фильтр'
+    ClientHeight = 29
+    ClientWidth = 757
+    TabOrder = 2
+    object Label1: TLabel
+      AnchorSideLeft.Control = GroupBox1
+      AnchorSideTop.Control = GroupBox1
+      AnchorSideTop.Side = asrCenter
+      Left = 4
+      Height = 15
+      Top = 7
+      Width = 28
+      BorderSpacing.Left = 4
+      Caption = 'Дата:'
+      ParentColor = False
+    end
+    object edDateEdit: TDateEdit
+      AnchorSideLeft.Control = Label1
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = GroupBox1
+      AnchorSideTop.Side = asrCenter
+      Left = 36
+      Height = 23
+      Top = 3
+      Width = 103
+      CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+      DateOrder = doNone
+      ButtonWidth = 23
+      BorderSpacing.Left = 4
+      NumGlyphs = 1
+      MaxLength = 0
+      OnChange = edDateEditChange
+      TabOrder = 0
+    end
+    object Label2: TLabel
+      Left = 144
+      Height = 15
+      Top = 7
+      Width = 108
+      Caption = 'Фамилия пациента:'
+      ParentColor = False
+    end
+    object edFamily: TEdit
+      AnchorSideLeft.Control = Label2
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = GroupBox1
+      AnchorSideTop.Side = asrCenter
+      Left = 254
+      Height = 23
+      Top = 3
+      Width = 100
+      BorderSpacing.Left = 2
+      OnChange = edDateEditChange
+      TabOrder = 1
+    end
+    object Label3: TLabel
+      AnchorSideLeft.Control = edFamily
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = GroupBox1
+      AnchorSideTop.Side = asrCenter
+      Left = 358
+      Height = 15
+      Top = 7
+      Width = 48
+      BorderSpacing.Left = 4
+      Caption = 'Диагноз:'
+      ParentColor = False
+    end
+    object edDiagnosis: TEdit
+      AnchorSideLeft.Control = Label3
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = GroupBox1
+      AnchorSideTop.Side = asrCenter
+      Left = 410
+      Height = 23
+      Top = 3
+      Width = 100
+      BorderSpacing.Left = 4
+      OnChange = edDateEditChange
+      TabOrder = 2
+    end
+    object BitBtn1: TBitBtn
+      AnchorSideTop.Control = GroupBox1
+      AnchorSideTop.Side = asrCenter
+      AnchorSideRight.Control = GroupBox1
+      AnchorSideRight.Side = asrBottom
+      Left = 608
+      Height = 30
+      Top = -1
+      Width = 145
+      Action = acFilterCansel
+      Anchors = [akTop, akRight]
+      BorderSpacing.Right = 4
+      TabOrder = 3
+    end
   end
   object ActionList1: TActionList
     Images = fmOperator.ImageList1
     left = 496
-    top = 114
+    top = 112
     object acDiseases: TAction
       Caption = 'Каталог болезней'
       ImageIndex = 6
       OnExecute = acDiseasesExecute
+    end
+    object acFilterCansel: TAction
+      Caption = 'Очистить фильтр'
+      ImageIndex = 1
+      OnExecute = acFilterCanselExecute
     end
   end
 end
