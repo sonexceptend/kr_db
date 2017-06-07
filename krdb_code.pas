@@ -10,6 +10,7 @@ uses
   , dmPoliclinik
   , krdb_fmPacient
   , krdb_fmDoctor
+  , krdb_fmaccountant
   ;
 
 type
@@ -24,6 +25,7 @@ type
     StatusBar1: TStatusBar;
     procedure BitBtn1Click(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
     procedure BitBtn4Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -91,6 +93,11 @@ end;
 procedure TfmGeneral.BitBtn2Click(Sender: TObject);
 begin
   fmDoctorCabinet.ShowModal;
+end;
+
+procedure TfmGeneral.BitBtn3Click(Sender: TObject);
+begin
+  fmVakanci.ShowModal;
 end;
 
 procedure TfmGeneral.BitBtn4Click(Sender: TObject);

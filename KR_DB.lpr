@@ -24,7 +24,7 @@ begin
   Application.CreateForm(TfmNewVisit, fmNewVisit);
   Application.CreateForm(TfmDoctorCabinet, fmDoctorCabinet);
   Application.CreateForm(TfmDiagnosis, fmDiagnosis);
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TfmVakanci, fmVakanci);
   Application.Run;
 end.
 
