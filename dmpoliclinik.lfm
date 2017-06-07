@@ -9,7 +9,7 @@ object dmPoliclinic: TdmPoliclinic
   object ODBCConnection1: TODBCConnection
     Connected = False
     LoginPrompt = False
-    KeepConnection = False
+    KeepConnection = True
     Params.Strings = (
       'DRIVER=SQL Server'
       'UID=son'
@@ -49,5 +49,19 @@ object dmPoliclinic: TdmPoliclinic
     Params = <>
     left = 256
     top = 67
+  end
+  object SQLtbVakancy: TSQLQuery
+    FieldDefs = <>
+    AfterOpen = SQLtbVakancyAfterOpen
+    Database = ODBCConnection1
+    Transaction = SQLTransaction1
+    SQL.Strings = (
+      'SELECT [id], [Vacancy] as ''Вакансия'', [Salary] as ''Оклад'' FROM [tbVakancy]'
+    )
+    Options = []
+    Params = <>
+    UsePrimaryKeyAsKey = False
+    left = 336
+    top = 8
   end
 end

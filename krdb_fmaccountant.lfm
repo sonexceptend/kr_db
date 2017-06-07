@@ -1,26 +1,92 @@
-object Form1: TForm1
-  Left = 369
+object fmVakanci: TfmVakanci
+  Left = 373
   Height = 429
-  Top = 151
+  Top = 198
   Width = 588
-  Caption = 'Form1'
+  Caption = 'Бухгалтерия'
   ClientHeight = 429
   ClientWidth = 588
+  OnShow = FormShow
   LCLVersion = '1.6.4.0'
   object ExtendedNotebook1: TExtendedNotebook
     Left = 0
     Height = 429
     Top = 0
     Width = 588
-    ActivePage = TabSheet2
+    ActivePage = TabSheet1
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object TabSheet1: TTabSheet
-      Caption = 'TabSheet1'
+      Caption = 'Вакансии'
+      ClientHeight = 401
+      ClientWidth = 580
+      object DBGrid1: TDBGrid
+        Left = 0
+        Height = 369
+        Top = 32
+        Width = 580
+        Align = alClient
+        AutoFillColumns = True
+        Color = clWindow
+        Columns = <>
+        DataSource = DataSource1
+        ReadOnly = True
+        TabOrder = 0
+      end
+      object ToolBar1: TToolBar
+        Left = 0
+        Top = 0
+        Width = 580
+        ButtonHeight = 28
+        ButtonWidth = 28
+        Caption = 'ToolBar1'
+        Images = fmOperator.ImageList1
+        TabOrder = 1
+        object ToolButton1: TToolButton
+          Left = 1
+          Top = 2
+          Action = acNewVakanci
+        end
+        object ToolButton2: TToolButton
+          Left = 29
+          Top = 2
+          Action = acEditVakanci
+        end
+        object ToolButton3: TToolButton
+          Left = 57
+          Top = 2
+          Action = acDeleteVakanci
+        end
+      end
     end
     object TabSheet2: TTabSheet
-      Caption = 'TabSheet2'
+      Caption = 'Служащие'
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = dmPoliclinic.SQLtbVakancy
+    left = 96
+    top = 99
+  end
+  object ActionList1: TActionList
+    Images = fmOperator.ImageList1
+    left = 417
+    top = 149
+    object acNewVakanci: TAction
+      Caption = 'Новая вакансия'
+      ImageIndex = 5
+      OnExecute = acNewVakanciExecute
+    end
+    object acEditVakanci: TAction
+      Caption = 'Изменить вакансию'
+      ImageIndex = 7
+      OnExecute = acEditVakanciExecute
+    end
+    object acDeleteVakanci: TAction
+      Caption = 'Удалить вакансию'
+      ImageIndex = 8
+      OnExecute = acDeleteVakanciExecute
     end
   end
 end

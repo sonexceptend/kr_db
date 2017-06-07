@@ -1,0 +1,109 @@
+object fmVakanciDialog: TfmVakanciDialog
+  Left = 369
+  Height = 142
+  Top = 151
+  Width = 320
+  BorderStyle = bsDialog
+  Caption = 'fmVakanciDialog'
+  ClientHeight = 142
+  ClientWidth = 320
+  LCLVersion = '1.6.4.0'
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 8
+    Height = 15
+    Top = 8
+    Width = 106
+    BorderSpacing.Left = 8
+    BorderSpacing.Top = 8
+    Caption = 'Название вакансии'
+    ParentColor = False
+  end
+  object Edit1: TEdit
+    AnchorSideLeft.Control = Label1
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 122
+    Height = 23
+    Top = 8
+    Width = 190
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Left = 8
+    BorderSpacing.Top = 8
+    BorderSpacing.Right = 8
+    TabOrder = 0
+    Text = 'Edit1'
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Edit1
+    AnchorSideTop.Side = asrBottom
+    Left = 8
+    Height = 15
+    Top = 39
+    Width = 34
+    BorderSpacing.Left = 8
+    BorderSpacing.Top = 8
+    Caption = 'Оклад'
+    ParentColor = False
+  end
+  object FloatSpinEdit1: TFloatSpinEdit
+    AnchorSideLeft.Control = Label2
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideTop.Control = Edit1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 50
+    Height = 23
+    Top = 39
+    Width = 262
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Left = 8
+    BorderSpacing.Top = 8
+    BorderSpacing.Right = 8
+    Increment = 1
+    MaxValue = 1000000000
+    MinValue = 0
+    TabOrder = 1
+    Value = 0
+  end
+  object BitBtn1: TBitBtn
+    AnchorSideRight.Control = BitBtn2
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 154
+    Height = 30
+    Top = 104
+    Width = 75
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 8
+    BorderSpacing.Bottom = 8
+    Default = True
+    DefaultCaption = True
+    Kind = bkOK
+    ModalResult = 1
+    TabOrder = 2
+  end
+  object BitBtn2: TBitBtn
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 237
+    Height = 30
+    Top = 104
+    Width = 75
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 8
+    BorderSpacing.Bottom = 8
+    Cancel = True
+    DefaultCaption = True
+    Kind = bkCancel
+    ModalResult = 2
+    TabOrder = 3
+  end
+end
