@@ -81,6 +81,7 @@ object fmVakanci: TfmVakanci
     object acEditVakanci: TAction
       Caption = 'Изменить вакансию'
       ImageIndex = 7
+      OnExecute = acEditVakanciExecute
     end
     object acDeleteVakanci: TAction
       Caption = 'Удалить вакансию'

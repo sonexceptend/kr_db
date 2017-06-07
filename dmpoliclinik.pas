@@ -88,10 +88,17 @@ end;
 
 procedure TdmPoliclinic.ExectSQL(SQL_Select: string);
 var stmp : string;
+    SQLlistLog : TStringList;
 begin
   if not ODBCConnection1.Connected then exit;
   SQLExecuteQuery.Active:=false;
-  //stmp:=StringReplace(SQL_Select,#39,#39,[rfReplaceAll]);
+  SQLlistLog := TStringList.Create;
+  if FileExists('sqllog.txt') then
+    SQLlistLog.LoadFromFile('sqllog.txt');
+  SQLlistLog.Add(SQL_Select);
+  SQLlistLog.SaveToFile('sqllog.txt');
+  SQLlistLog.Free;
+  SQLlistLog:=nil;
   SQLExecuteQuery.SQL.Text:=Utf8ToWinCP(SQL_Select);
   try
     SQLExecuteQuery.ExecSQL;

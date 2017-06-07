@@ -56,7 +56,7 @@ object dmPoliclinic: TdmPoliclinic
     Database = ODBCConnection1
     Transaction = SQLTransaction1
     SQL.Strings = (
-      'SELECT [Vacancy] as ''Вакансия'', [Salary] as ''Оклад'' FROM [tbVakancy]'
+      'SELECT [id], [Vacancy] as ''Вакансия'', [Salary] as ''Оклад'' FROM [tbVakancy]'
     )
     Options = []
     Params = <>

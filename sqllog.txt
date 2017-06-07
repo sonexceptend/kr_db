@@ -205,3 +205,7 @@ SELECT * FROM tbPatients
 SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
 SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis = 2017-06-07 
 SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=1 AND tVis.DateVis = 2017-06-07 
+INSERT INTO tbVakancy([Vacancy], [Salary]) VALUES ('Вахтер' ,7300,00)
+INSERT INTO tbVakancy([Vacancy], [Salary]) VALUES ('Вахтер' ,7550)
+UPDATE [tbVakancy] SET [Vacancy]='Уборщица', [Salary]=8050 WHERE id=1004
+DELETE FROM [tbVakancy] WHERE id=1005
