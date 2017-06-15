@@ -85,7 +85,7 @@ begin
     SQLText:=Format(dmPoliclinic.SQLList[10],[fmDiagnosis.TreeListView1.Selected.Text,
                                              strtoint(StringGrid1.Cells[0,StringGrid1.Row])]);
     dmPoliclinic.ExectSQL(SQLText);
-    UpdateDoctorVisitTable(' WHERE tVis.idDoc='+idDoctorList[ComboBox1.ItemIndex]+Format(' AND tVis.DateVis = %s ',[FormatDateTime('yyyy-mm-dd',edDateEdit.Date)]));
+    UpdateDoctorVisitTable(' WHERE tVis.idDoc='+idDoctorList[ComboBox1.ItemIndex]+Format(' AND tVis.DateVis >= CONVERT(DATETIME, '+#39+'%s 00:00:00'+#39+', 102)',[FormatDateTime('yyyy-mm-dd',edDateEdit.Date)]));
   end;
 end;
 
@@ -128,7 +128,7 @@ begin
   edDateEdit.Date:=Now;
   edDiagnosis.Text:='';
   edFamily.Text:='';
-  UpdateDoctorVisitTable(' WHERE tVis.idDoc='+idDoctorList[ComboBox1.ItemIndex]+Format(' AND tVis.DateVis = %s ',[FormatDateTime('yyyy-mm-dd',edDateEdit.Date)]));
+  UpdateDoctorVisitTable(' WHERE tVis.idDoc='+idDoctorList[ComboBox1.ItemIndex]+Format(' AND tVis.DateVis >= CONVERT(DATETIME, '+#39+'%s 00:00:00'+#39+', 102)',[FormatDateTime('yyyy-mm-dd',edDateEdit.Date)]));
 end;
 
 procedure TfmDoctorCabinet.acFl_LastDayExecute(Sender: TObject);
@@ -138,22 +138,23 @@ end;
 
 procedure TfmDoctorCabinet.ComboBox1Select(Sender: TObject);
 begin
-  UpdateDoctorVisitTable(' WHERE tVis.idDoc='+idDoctorList[ComboBox1.ItemIndex]+Format(' AND tVis.DateVis = %s ',[FormatDateTime('yyyy-mm-dd',edDateEdit.Date)]));
+  UpdateDoctorVisitTable(' WHERE tVis.idDoc='+idDoctorList[ComboBox1.ItemIndex]+Format(' AND tVis.DateVis >= CONVERT(DATETIME, '+#39+'%s 00:00:00'+#39+', 102)',[FormatDateTime('yyyy-mm-dd',edDateEdit.Date)]));
 end;
 
 procedure TfmDoctorCabinet.edDateEditChange(Sender: TObject);
 var sFilter : string;
 begin
   sFilter:='';
-  //if edDateEdit.Text<>'' then sFilter := sFilter + Format(' AND tVis.DateVis = %s ',[FormatDateTime('yyyy-mm-dd',edDateEdit.Date)]);
-  if edFamily.Text<>'' then
+  if edDateEdit.Text<>'' then sFilter := sFilter + Format(' AND tVis.DateVis >= CONVERT(DATETIME, '+#39+'%s 00:00:00'+#39+', 102)',[FormatDateTime('yyyy-mm-dd',edDateEdit.Date)]);
+  {if edFamily.Text<>'' then
       sFilter := sFilter + Format(' AND tVis.Family LIKE '+#39+'%%%s%%'+#39,[edFamily.Text]);
   if edDiagnosis.Text<>'' then
       sFilter := sFilter + Format(' AND tDoc.Description LIKE '+#39+'%%s%%'+#39,[edDiagnosis.Text]);
   if sFilter<>'' then begin
-    if (ComboBox1.ItemIndex<0) or (ComboBox1.ItemIndex>=ComboBox1.Items.Count) then exit;
+    if (ComboBox1.ItemIndex<0) or (ComboBox1.ItemIndex>=ComboBox1.Items.Count) then exit;}
+    if ComboBox1.ItemIndex<0 then exit;
     UpdateDoctorVisitTable(' WHERE tVis.idDoc='+idDoctorList[ComboBox1.ItemIndex]+sFilter);
-  end;
+//  end;
 end;
 
 procedure TfmDoctorCabinet.FormCreate(Sender: TObject);

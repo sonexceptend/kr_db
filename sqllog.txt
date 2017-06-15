@@ -209,3 +209,321 @@ INSERT INTO tbVakancy([Vacancy], [Salary]) VALUES ('Вахтер' ,7300,00)
 INSERT INTO tbVakancy([Vacancy], [Salary]) VALUES ('Вахтер' ,7550)
 UPDATE [tbVakancy] SET [Vacancy]='Уборщица', [Salary]=8050 WHERE id=1004
 DELETE FROM [tbVakancy] WHERE id=1005
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='Скакова', SecondName='Петр', MiddleName='Иванович', BirthName='1978-03-20', Pasport='5532986544' WHERE id=1
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='Скаковец', SecondName='Петр', MiddleName='Иванович', BirthName='1978-03-20', Pasport='5532986544' WHERE id=1
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='Скаковец', SecondName='Петр', MiddleName='Иванович', BirthDate='1978-03-20', Pasport='5532986544' WHERE id=1
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='Скаковец', SecondName='Петр', MiddleName='Иванович', BirthDate='1978-03-20', Pasport='5532986544' WHERE id=1
+UPDATE [tbWorkers] SET FirstName='Скаковец', SecondName='Петр', MiddleName='Иванович', BirthDate='1978-03-20', Pasport='5532986544' WHERE id=1
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+INSERT INTO tbWorkers([FirstName], [SecondName], [MiddleName], [BirthDate], [Pasport]) VALUES ('Любвина', 'Ирина', '', '', '')
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='Любвина', SecondName='Ирина', MiddleName='Кузьминишна', BirthDate='1900-01-01', Pasport='' WHERE id=1005
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='Любвина', SecondName='Ирина', MiddleName='Кузьминишна', BirthDate='1963-01-12', Pasport='' WHERE id=1005
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='Любвина', SecondName='Ирина', MiddleName='Кузьминишна', BirthDate='1963-01-12', Pasport='5444142585' WHERE id=1005
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT * FROM tbPatients
+SELECT tVis.FirstName, tVis.Date_Visit, tDoc.Specialty FROM (SELECT tP.[FirstName], tV.[Date_Visit], tV.[id_Doctor] FROM [tbVisit] as tV INNER JOIN [tbPatients] as tP ON tV.id_Patient = tP.id WHERE tV.id_Patient = 1) as tVis INNER JOIN [tbDoctors] as tDoc ON tVis.id_Doctor = tDoc.id
+SELECT * FROM tbPatients WHERE  FirstName LIKE '%И%'
+SELECT * FROM tbPatients WHERE  FirstName LIKE '%И%'
+SELECT * FROM tbPatients WHERE  FirstName LIKE '%Ив%'
+SELECT * FROM tbPatients WHERE  FirstName LIKE '%Ив%'
+SELECT * FROM tbPatients WHERE  FirstName LIKE '%Ив%'
+SELECT * FROM tbPatients
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT * FROM tbPatients
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis = 2017-06-10 
+SELECT * FROM tbPatients
+SELECT tVis.FirstName, tVis.Date_Visit, tDoc.Specialty FROM (SELECT tP.[FirstName], tV.[Date_Visit], tV.[id_Doctor] FROM [tbVisit] as tV INNER JOIN [tbPatients] as tP ON tV.id_Patient = tP.id WHERE tV.id_Patient = 14) as tVis INNER JOIN [tbDoctors] as tDoc ON tVis.id_Doctor = tDoc.id
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers WHERE tbDoc.[Specialty] LIKE '%Хирург%' AND [tbWorkers].[FirstName] LIKE '%Скаковец%'
+INSERT INTO tbVisit([id_Patient], [Date_Visit], [id_Doctor]) VALUES (14, '2017-10-06' ,2)
+SELECT tVis.FirstName, tVis.Date_Visit, tDoc.Specialty FROM (SELECT tP.[FirstName], tV.[Date_Visit], tV.[id_Doctor] FROM [tbVisit] as tV INNER JOIN [tbPatients] as tP ON tV.id_Patient = tP.id WHERE tV.id_Patient = 14) as tVis INNER JOIN [tbDoctors] as tDoc ON tVis.id_Doctor = tDoc.id
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis = 2017-06-10 
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis = 2017-06-10 
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis = 2017-06-10 
+SELECT * FROM tbPatients
+SELECT tVis.FirstName, tVis.Date_Visit, tDoc.Specialty FROM (SELECT tP.[FirstName], tV.[Date_Visit], tV.[id_Doctor] FROM [tbVisit] as tV INNER JOIN [tbPatients] as tP ON tV.id_Patient = tP.id WHERE tV.id_Patient = 14) as tVis INNER JOIN [tbDoctors] as tDoc ON tVis.id_Doctor = tDoc.id
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis = 2017-10-06 
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=3 AND tVis.DateVis = 2017-10-06 
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis = 2017-10-06 
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis = 2017-10-06 
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis = 2017-10-06 
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis = 2017-10-06 
+SELECT * FROM tbPatients
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND Date_Visit >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND Date_Visit >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND Date_Visit >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND Date_Visit >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.Date_Visit >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-09 00:00:00', 102)
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-01 00:00:00', 102)
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-05-01 00:00:00', 102)
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-05-10 00:00:00', 102)
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode IS NULL
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'A00-B99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'C00-D48'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'E00-E90'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'F00-F99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'G00-G99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'H00-H59'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'H60-H95'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'I00-I99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J00-J99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'K00-K93'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'L00-L99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'M00-M99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'N00-N99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'O00-O99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'P00-P96'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'Q00-Q99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'R00-R99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'S00-T98'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'V01-Y98'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'Z00-Z99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode IS NULL
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'A00-B99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'C00-D48'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'E00-E90'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'F00-F99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'G00-G99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'H00-H59'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'H60-H95'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'I00-I99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J00-J99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'K00-K93'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'L00-L99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'M00-M99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'N00-N99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'O00-O99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'P00-P96'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'Q00-Q99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'R00-R99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'S00-T98'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'V01-Y98'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'Z00-Z99'
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode IS NULL
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'A00-B99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'C00-D48'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'E00-E90'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'F00-F99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'G00-G99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'H00-H59'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'H60-H95'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'I00-I99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J00-J99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'K00-K93'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'L00-L99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'M00-M99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'N00-N99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'O00-O99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'P00-P96'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'Q00-Q99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'R00-R99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'S00-T98'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'V01-Y98'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'Z00-Z99'
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode IS NULL
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'A00-B99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'C00-D48'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'E00-E90'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'F00-F99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'G00-G99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'H00-H59'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'H60-H95'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'I00-I99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J00-J99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'K00-K93'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'L00-L99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'M00-M99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'N00-N99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'O00-O99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'P00-P96'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'Q00-Q99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'R00-R99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'S00-T98'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'V01-Y98'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'Z00-Z99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J00-J06'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J10-J18'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J20-J22'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J30-J39'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J40-J47'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J60-J70'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J80-J84'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J85-J86'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J90-J94'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J95-J99'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J10'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J11'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J12'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J13'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J14'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J15'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J16'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J17*'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J18'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J10.0'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J10.1'
+SELECT [id], [Code], [Description], [ParentCode] FROM [tbDiagnosis] WHERE ParentCode = 'J10.8'
+UPDATE [dbo].[tbVisit] SET [id_Diagnoz] = (SELECT id FROM [tbDiagnosis] WHERE [tbDiagnosis].Code='J10.8') WHERE [tbVisit].id=10015
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-10 00:00:00', 102)
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+UPDATE [tbWorkers] SET FirstName='Скаковец', SecondName='Петр', MiddleName='Иванович', BirthDate='1978-03-20', Pasport='5532986544' WHERE id=1
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='Скаковец', SecondName='Петр', MiddleName='Иванович', BirthDate='1978-03-20', Pasport='5532986544' WHERE id=1
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='Скаковец', SecondName='Петр', MiddleName='Иванович', BirthDate='1978-03-20', Pasport='5532986544' WHERE id=1
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='Любвина', SecondName='Ирина', MiddleName='Кузьминишна', BirthDate='1963-01-12', Pasport='5444142585' WHERE id=1005
+SELECT * FROM [tbWorkers]
+SELECT tbDoc.[Specialty], [tbWorkers].[FirstName], tbDoc.id FROM [tbWorkers] INNER JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=2 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-15 00:00:00', 102)
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=3 AND tVis.DateVis >= CONVERT(DATETIME, '2017-06-15 00:00:00', 102)
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+INSERT INTO tbDoctors([id_Workers], [id_Vacancy], [Specialty]) VALUES (2 ,1005, 'Невролог')
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+INSERT INTO tbDoctors([id_Workers], [id_Vacancy], [Specialty]) VALUES (1005 ,3, 'Невролог')
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+INSERT INTO tbDoctors VALUES (3,1004,'Патологоанатом)
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+INSERT INTO tbDoctors SET [id_Vacancy]=3,[Specialty]='Патологоанатом
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+INSERT INTO tbDoctors SET [id_Vacancy]=3,[Specialty]='Патологоанатом'
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+INSERT INTO tbDoctors([id_Vacancy],[Specialty]) VALUES (3,'Патологоанатом')
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность' FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность,t1.id FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность',tbDoc.Id FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность,t1.id FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность',tbDoc.Id FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность,t1.id FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность',tbDoc.Id FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность,t1.id FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность',tbDoc.Id FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность,t1.id FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность',tbDoc.Id FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность,t1.id FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность',tbDoc.Id FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+SELECT * FROM [tbWorkers]
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность,t1.id FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность',tbDoc.Id FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbVakancy]
+SELECT * FROM [tbWorkers]
+UPDATE [tbDoctors] SET [id_Workers]=1,[id_Vacancy]=2,[Specialty]='Ортапед/Костоправ' WHERE id=1
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность,t1.id FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность',tbDoc.Id FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id

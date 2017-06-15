@@ -45,7 +45,7 @@
         <PackageName Value="LCL"/>
       </Item5>
     </RequiredPackages>
-    <Units Count="10">
+    <Units Count="11">
       <Unit0>
         <Filename Value="KR_DB.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -113,8 +113,16 @@
         <Filename Value="krdb_fmvakancidialog.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="fmVakanciDialog"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit9>
+      <Unit10>
+        <Filename Value="krdb_fmdoctordialog.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="fmDoctorDialog"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit10>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

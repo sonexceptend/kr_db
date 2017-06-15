@@ -13,9 +13,9 @@ object fmVakanci: TfmVakanci
     Height = 429
     Top = 0
     Width = 588
-    ActivePage = TabSheet1
+    ActivePage = TabSheet3
     Align = alClient
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Вакансии'
@@ -62,6 +62,164 @@ object fmVakanci: TfmVakanci
     end
     object TabSheet2: TTabSheet
       Caption = 'Служащие'
+      ClientHeight = 401
+      ClientWidth = 580
+      object StringGrid1: TStringGrid
+        Left = 0
+        Height = 369
+        Top = 32
+        Width = 580
+        Align = alClient
+        AutoFillColumns = True
+        ColCount = 6
+        Columns = <        
+          item
+            SizePriority = 0
+            Title.Caption = '№'
+            Width = 0
+            Visible = False
+          end        
+          item
+            Title.Caption = 'Фамилия'
+            Width = 179
+          end        
+          item
+            SizePriority = 0
+            Title.Caption = 'Имя'
+            Width = 100
+          end        
+          item
+            SizePriority = 0
+            Title.Caption = 'Отчество'
+            Width = 100
+          end        
+          item
+            SizePriority = 0
+            Title.Caption = 'Дата рождения'
+            Width = 100
+          end        
+          item
+            SizePriority = 0
+            Title.Caption = 'Паспорт'
+            Width = 80
+          end>
+        FixedCols = 0
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+        RowCount = 2
+        TabOrder = 0
+        OnEditingDone = StringGrid1EditingDone
+        ColWidths = (
+          0
+          179
+          100
+          100
+          100
+          80
+        )
+      end
+      object ToolBar2: TToolBar
+        Left = 0
+        Top = 0
+        Width = 580
+        ButtonHeight = 28
+        ButtonWidth = 28
+        Caption = 'ToolBar2'
+        Images = fmOperator.ImageList1
+        TabOrder = 1
+        object ToolButton4: TToolButton
+          Left = 1
+          Top = 2
+          Action = acNewWorkers
+        end
+        object ToolButton5: TToolButton
+          Left = 29
+          Top = 2
+          Action = acDeleteWorker
+        end
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Врачебный штат'
+      ClientHeight = 401
+      ClientWidth = 580
+      object StringGrid2: TStringGrid
+        Left = 0
+        Height = 369
+        Top = 32
+        Width = 580
+        Align = alClient
+        AutoFillColumns = True
+        ColCount = 7
+        Columns = <        
+          item
+            Title.Caption = 'idw'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'Фамилия'
+            Width = 168
+          end        
+          item
+            SizePriority = 0
+            Title.Caption = 'Имя'
+            Width = 120
+          end        
+          item
+            SizePriority = 0
+            Title.Caption = 'Отчество'
+            Width = 120
+          end        
+          item
+            Title.Caption = 'idv'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'Специальность'
+            Width = 168
+          end        
+          item
+            Title.Caption = 'id'
+            Width = 0
+            Visible = False
+          end>
+        FixedCols = 0
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect, goSmoothScroll]
+        TabOrder = 0
+        ColWidths = (
+          0
+          168
+          120
+          120
+          0
+          168
+          0
+        )
+      end
+      object ToolBar3: TToolBar
+        Left = 0
+        Top = 0
+        Width = 580
+        ButtonHeight = 28
+        ButtonWidth = 28
+        Caption = 'ToolBar3'
+        Images = fmOperator.ImageList1
+        TabOrder = 1
+        object ToolButton6: TToolButton
+          Left = 1
+          Top = 2
+          Action = acNewDoctor
+        end
+        object ToolButton7: TToolButton
+          Left = 29
+          Top = 2
+          Action = acEditDoctor
+        end
+        object ToolButton8: TToolButton
+          Left = 57
+          Top = 2
+          Action = acDeleteDoctor
+        end
+      end
     end
   end
   object DataSource1: TDataSource
@@ -87,6 +245,31 @@ object fmVakanci: TfmVakanci
       Caption = 'Удалить вакансию'
       ImageIndex = 8
       OnExecute = acDeleteVakanciExecute
+    end
+    object acNewWorkers: TAction
+      Caption = 'Новый работник'
+      ImageIndex = 2
+      OnExecute = acNewWorkersExecute
+    end
+    object acDeleteWorker: TAction
+      Caption = 'Удалить работника'
+      ImageIndex = 4
+      OnExecute = acDeleteWorkerExecute
+    end
+    object acNewDoctor: TAction
+      Caption = 'Новая позиция врача'
+      ImageIndex = 5
+      OnExecute = acNewDoctorExecute
+    end
+    object acEditDoctor: TAction
+      Caption = 'Изменить позицию врача'
+      ImageIndex = 7
+      OnExecute = acEditDoctorExecute
+    end
+    object acDeleteDoctor: TAction
+      Caption = 'Удалить позицию врача'
+      ImageIndex = 8
+      OnExecute = acDeleteDoctorExecute
     end
   end
 end

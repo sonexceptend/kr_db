@@ -13,3 +13,12 @@ SELECT [id], [Vacancy] as 'Вакансия', [Salary] as 'Оклад' FROM [tbV
 INSERT INTO tbVakancy([Vacancy], [Salary]) VALUES ('%s' ,%s)
 UPDATE [tbVakancy] SET [Vacancy]='%s', [Salary]=%s WHERE id=%d
 DELETE FROM [tbVakancy] WHERE id=%d
+SELECT * FROM [tbWorkers]
+UPDATE [tbWorkers] SET FirstName='%s', SecondName='%s', MiddleName='%s', BirthDate='%s', Pasport='%s' WHERE id=%d
+DELETE FROM [tbWorkers] WHERE id=%d
+INSERT INTO tbWorkers([FirstName], [SecondName], [MiddleName], [BirthDate], [Pasport]) VALUES ('%s', '%s', '%s', '%s', '%s')
+SELECT t1.idw, t1.Фамилия,t1.Имя,t1.Отчество, t2.idv,t2.Вакансия,t1.Специальность,t1.id FROM (SELECT [tbWorkers].[id] as 'idw', [tbWorkers].[FirstName] as 'Фамилия',[tbWorkers].[SecondName] as 'Имя',[tbWorkers].[MiddleName] as 'Отчество',tbDoc.id_Vacancy,tbDoc.[Specialty] as 'Специальность',tbDoc.Id FROM [tbWorkers] FULL JOIN [tbDoctors] as tbDoc ON [tbWorkers].id = tbDoc.id_Workers) as t1 INNER JOIN (SELECT [tbVakancy].id as 'idv',[tbVakancy].Salary,[tbVakancy].Vacancy as 'Вакансия',[tbDoctors].Specialty,[tbDoctors].id FROM [tbVakancy] INNER JOIN [tbDoctors] ON  [tbDoctors].id_Vacancy = [tbVakancy].id) as t2 ON t1.id_Vacancy=t2.id
+SELECT tVis.idV, tVis.Family, tVis.Name, tVis.MiddleName, tVis.DateVis, tDoc.Code, tDoc.Description FROM (SELECT tV.[id] as 'idV',tP.[FirstName] as 'Family',tP.[SecondName] as 'Name',tP.[MiddleName] as 'MiddleName',tV.[Date_Visit] as 'DateVis',tV.[id_Diagnoz] as 'idD',tV.[id_Doctor] as 'idDoc' FROM [Policlinic].[dbo].[tbVisit] as tV INNER JOIN [Policlinic].[dbo].[tbPatients] as tP ON tV.id_Patient = tP.id) as tVis LEFT JOIN [Policlinic].[dbo].[tbDiagnosis] as tDoc ON tVis.idD=tDoc.id WHERE tVis.idDoc=%d AND tVis.Date_Visit >= CONVERT(DATETIME, '%s 00:00:00', 102) 
+INSERT INTO tbDoctors(%s) VALUES (%s)
+UPDATE [tbDoctors] SET %s WHERE id=%d
+DELETE FROM [tbDoctors] WHERE id=%d

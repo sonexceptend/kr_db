@@ -1,0 +1,144 @@
+object fmDoctorDialog: TfmDoctorDialog
+  Left = 369
+  Height = 240
+  Top = 151
+  Width = 320
+  Caption = 'fmDoctorDialog'
+  ClientHeight = 240
+  ClientWidth = 320
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnShow = FormShow
+  LCLVersion = '1.6.4.0'
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 4
+    Height = 15
+    Top = 4
+    Width = 54
+    BorderSpacing.Left = 4
+    BorderSpacing.Top = 4
+    Caption = 'Вакансия:'
+    ParentColor = False
+  end
+  object ComboBox1: TComboBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 4
+    Height = 23
+    Top = 23
+    Width = 312
+    Anchors = [akTop, akLeft, akRight]
+    AutoComplete = True
+    AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+    BorderSpacing.Left = 4
+    BorderSpacing.Top = 4
+    BorderSpacing.Right = 4
+    ItemHeight = 15
+    TabOrder = 0
+    Text = 'ComboBox1'
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = ComboBox1
+    AnchorSideTop.Side = asrBottom
+    Left = 4
+    Height = 15
+    Top = 50
+    Width = 52
+    BorderSpacing.Left = 4
+    BorderSpacing.Top = 4
+    Caption = 'Работник'
+    ParentColor = False
+  end
+  object ComboBox2: TComboBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label2
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 4
+    Height = 23
+    Top = 69
+    Width = 312
+    Anchors = [akTop, akLeft, akRight]
+    AutoComplete = True
+    AutoCompleteText = [cbactEnabled, cbactEndOfLineComplete, cbactSearchAscending]
+    BorderSpacing.Left = 4
+    BorderSpacing.Top = 4
+    BorderSpacing.Right = 4
+    ItemHeight = 15
+    TabOrder = 1
+    Text = 'ComboBox2'
+  end
+  object Label3: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = ComboBox2
+    AnchorSideTop.Side = asrBottom
+    Left = 4
+    Height = 15
+    Top = 96
+    Width = 121
+    BorderSpacing.Left = 4
+    BorderSpacing.Top = 4
+    Caption = 'Специализация врача'
+    ParentColor = False
+  end
+  object Edit1: TEdit
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Label3
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 4
+    Height = 23
+    Top = 115
+    Width = 312
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Left = 4
+    BorderSpacing.Top = 4
+    BorderSpacing.Right = 4
+    TabOrder = 2
+    Text = 'Edit1'
+  end
+  object BitBtn1: TBitBtn
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 237
+    Height = 30
+    Top = 202
+    Width = 75
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 8
+    BorderSpacing.Bottom = 8
+    Cancel = True
+    DefaultCaption = True
+    Kind = bkCancel
+    ModalResult = 2
+    TabOrder = 3
+  end
+  object BitBtn2: TBitBtn
+    AnchorSideRight.Control = BitBtn1
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 154
+    Height = 30
+    Top = 202
+    Width = 75
+    Anchors = [akRight, akBottom]
+    BorderSpacing.Right = 8
+    BorderSpacing.Bottom = 8
+    Default = True
+    DefaultCaption = True
+    Kind = bkOK
+    ModalResult = 1
+    OnClick = BitBtn2Click
+    TabOrder = 4
+  end
+end

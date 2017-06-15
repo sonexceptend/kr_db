@@ -172,7 +172,7 @@ begin
     SQLText:=Format(dmPoliclinic.SQLList[0],[edFirstName.Text,
                                              edSecondName.Text,
                                              edMiddleName.Text,
-                                             FormatDateTime('yyyy-dd-mm',edBrithDate.Date),
+                                             FormatDateTime('yyyy-mm-dd',edBrithDate.Date),
                                              StringReplace(edPasport.Text,'_','',[rfReplaceAll]),
                                              StringReplace(edPolis.Text,'_','',[rfReplaceAll]),
                                              0]);

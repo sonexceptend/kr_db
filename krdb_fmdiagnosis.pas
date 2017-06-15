@@ -44,6 +44,7 @@ implementation
 
 procedure TfmDiagnosis.FormShow(Sender: TObject);
 begin
+  if TreeListView1.Items.Count<>0 then exit;
   TreeListView1.Items.Clear;
   UpdateTableDiagnosis(0,2,nil,'');
   fShow:=false;

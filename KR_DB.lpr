@@ -9,7 +9,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms, treelistviewpackage, lazcontrols, krdb_code, dmPoliclinik,
   krdb_fmPacient, krdb_editpacient, krdb_newvisit, krdb_fmDoctor,
-  krdb_fmdiagnosis, krdb_fmaccountant, krdb_fmvakancidialog
+  krdb_fmdiagnosis, krdb_fmaccountant, krdb_fmvakancidialog, krdb_fmdoctordialog
   { you can add units after this };
 
 {$R *.res}
@@ -26,6 +26,7 @@ begin
   Application.CreateForm(TfmDiagnosis, fmDiagnosis);
   Application.CreateForm(TfmVakanci, fmVakanci);
   Application.CreateForm(TfmVakanciDialog, fmVakanciDialog);
+  Application.CreateForm(TfmDoctorDialog, fmDoctorDialog);
   Application.Run;
 end.
 
